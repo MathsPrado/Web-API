@@ -78,20 +78,31 @@ namespace SmartSchool.API.Controllers
 
         // POST: api/Aluno
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post(Aluno aluno)
         {
+            return Ok(aluno);
         }
+
 
         // PUT: api/Aluno/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, Aluno aluno)
         {
+            return Ok(aluno);
         }
+
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            return Ok();
+        }
+
+        [HttpPatch]
+        public IActionResult Patch(int id, Aluno aluno)
+        {
+            return Ok(aluno);
         }
     }
 }
