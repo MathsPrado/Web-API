@@ -9,6 +9,7 @@ namespace SmartSchool.API.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        public string Sobrenome { get; set; }
         public IEnumerable<Disciplina> Disciplinas { get; set; }
 
         public Professor(int id, string nome)
