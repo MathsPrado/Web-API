@@ -278,6 +278,9 @@ namespace SmartSchool.API.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Sobrenome")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Professores");

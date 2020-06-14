@@ -53,13 +53,13 @@ namespace SmartSchool.API.Controllers
         public IActionResult PostProfessor(Professor professor)
         {
             var professorT = _context.Professores.AsNoTracking().FirstOrDefault(a => a.Nome.ToUpper() == professor.Nome.ToUpper() && a.Sobrenome.ToUpper() == professor.Sobrenome.ToUpper());
-            if(professorT == null)
+            if(professorT != null)
             {
                 return BadRequest("Professor já cadastrado");
             }
             _context.Add(professor);
             _context.SaveChanges();
-            return Ok("Criado com sucesso:"+ professor);
+            return Ok(professor);
         }
 
         [HttpPut("{id}")]
@@ -70,9 +70,10 @@ namespace SmartSchool.API.Controllers
             {
                 return BadRequest("Professor não encontrado");
             }
+            professor.Id = id;
             _context.Update(professor);
             _context.SaveChanges();
-            return Ok("Alterações realizadas:" + professor);
+            return Ok(professor);
         }
 
         [HttpDelete("{id}")]
@@ -85,7 +86,7 @@ namespace SmartSchool.API.Controllers
             }
             _context.Remove(professorT);
             _context.SaveChanges();
-            return Ok("Deletado com sucesso:" + professorT);
+            return Ok("Deletado com sucesso:");
         }
 
         [HttpPatch("{id}")]
@@ -98,7 +99,7 @@ namespace SmartSchool.API.Controllers
             }
             _context.Update(professor);
             _context.SaveChanges();
-            return Ok("Alterações realizadas:" + professor);
+            return Ok("Alterações realizadas:");
         }
     }
 }

@@ -8,8 +8,8 @@ using SmartSchool.API.Data;
 namespace SmartSchool.API.Migrations
 {
     [DbContext(typeof(SmartContext))]
-    [Migration("20200613170110_Initials")]
-    partial class Initials
+    [Migration("20200614134218_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -278,6 +278,9 @@ namespace SmartSchool.API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Sobrenome")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

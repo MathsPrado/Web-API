@@ -2,7 +2,7 @@
 
 namespace SmartSchool.API.Migrations
 {
-    public partial class Initials : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,8 @@ namespace SmartSchool.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(nullable: true)
+                    Nome = table.Column<string>(nullable: true),
+                    Sobrenome = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -115,28 +116,28 @@ namespace SmartSchool.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Professores",
-                columns: new[] { "Id", "Nome" },
-                values: new object[] { 1, "Lauro" });
+                columns: new[] { "Id", "Nome", "Sobrenome" },
+                values: new object[] { 1, "Lauro", null });
 
             migrationBuilder.InsertData(
                 table: "Professores",
-                columns: new[] { "Id", "Nome" },
-                values: new object[] { 2, "Roberto" });
+                columns: new[] { "Id", "Nome", "Sobrenome" },
+                values: new object[] { 2, "Roberto", null });
 
             migrationBuilder.InsertData(
                 table: "Professores",
-                columns: new[] { "Id", "Nome" },
-                values: new object[] { 3, "Ronaldo" });
+                columns: new[] { "Id", "Nome", "Sobrenome" },
+                values: new object[] { 3, "Ronaldo", null });
 
             migrationBuilder.InsertData(
                 table: "Professores",
-                columns: new[] { "Id", "Nome" },
-                values: new object[] { 4, "Rodrigo" });
+                columns: new[] { "Id", "Nome", "Sobrenome" },
+                values: new object[] { 4, "Rodrigo", null });
 
             migrationBuilder.InsertData(
                 table: "Professores",
-                columns: new[] { "Id", "Nome" },
-                values: new object[] { 5, "Alexandre" });
+                columns: new[] { "Id", "Nome", "Sobrenome" },
+                values: new object[] { 5, "Alexandre", null });
 
             migrationBuilder.InsertData(
                 table: "Disciplinas",
