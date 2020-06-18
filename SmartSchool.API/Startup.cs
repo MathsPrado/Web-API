@@ -29,7 +29,7 @@ namespace SmartSchool.API
             services.AddDbContext<SmartContext>(
                 context => context.UseSqlite( Configuration.GetConnectionString("Default"))
                 );
-
+            //quando intancia um repository no controller, ele ja passa o context pro repository
             services.AddScoped<IRepository, Repository>();
 
             services.AddControllers();

@@ -7,9 +7,9 @@ namespace SmartSchool.API.Data
 {
     public interface IRepository
     {
-        string pegaResposta();
-        void add();
-        void Delete();
+        void add<T>(T entity) where T : class;
+        void update<T>(T entity) where T : class;
+        void Delete<T>(T entity) where T : class;
         bool SaveChanges();
 
     }
