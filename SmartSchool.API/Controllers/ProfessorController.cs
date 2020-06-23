@@ -15,9 +15,12 @@ namespace SmartSchool.API.Controllers
     public class ProfessorController : ControllerBase
     {
         private readonly SmartContext _context;
+        private readonly IRepository _repo;
 
-        public ProfessorController(SmartContext context)
+        public ProfessorController(SmartContext context,
+                                    IRepository repo)
         {
+            _repo = repo;
             _context = context;
         }
 
@@ -52,14 +55,13 @@ namespace SmartSchool.API.Controllers
         [HttpPost]
         public IActionResult PostProfessor(Professor professor)
         {
-            var professorT = _context.Professores.AsNoTracking().FirstOrDefault(a => a.Nome.ToUpper() == professor.Nome.ToUpper() && a.Sobrenome.ToUpper() == professor.Sobrenome.ToUpper());
-            if(professorT != null)
+
+            _repo.Add(professor);
+            if (_repo.SaveChanges())
             {
-                return BadRequest("Professor já cadastrado");
+                return Ok(professor);
             }
-            _context.Add(professor);
-            _context.SaveChanges();
-            return Ok(professor);
+            return BadRequest("Professor nao cadastrado");
         }
 
         [HttpPut("{id}")]

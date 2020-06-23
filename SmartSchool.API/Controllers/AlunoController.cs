@@ -24,12 +24,6 @@ namespace SmartSchool.API.Controllers
             _repo = repo;
         }      
 
-        // GET: api/Aluno
-        [HttpGet("pegaResposta")]
-        public IActionResult pegaResposta()
-        {
-            return Ok(_repo.pegaResposta());
-        }
 
         // GET: api/Aluno
         [HttpGet]
@@ -71,9 +65,12 @@ namespace SmartSchool.API.Controllers
         [HttpPost]
         public IActionResult Post(Aluno aluno)
         {
-            _context.Add(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+            _repo.Add(aluno);
+            if (_repo.SaveChanges())
+            {
+                return Ok(aluno);
+            }
+            return BadRequest("Aluno nao cadastrado");
         }
 
 
@@ -86,9 +83,13 @@ namespace SmartSchool.API.Controllers
             {
                 return BadRequest("Aluno não encontrado");
             }
-            _context.Update(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+
+            _repo.Update(aluno);
+            if (_repo.SaveChanges())
+            {
+                return Ok(aluno);
+            }
+            return BadRequest("Aluno nao atualizado");
         }
 
 
@@ -101,9 +102,12 @@ namespace SmartSchool.API.Controllers
             {
                 return BadRequest("Aluno não encontrado");
             }
-            _context.Remove(aluno);
-            _context.SaveChanges();
-            return Ok("successfully deleted");
+            _repo.Delete(aluno);
+            if(_repo.SaveChanges())
+            {
+                return Ok("Aluno deletado");
+            }
+            return Ok("Successfully deleted");
         }
 
         [HttpPatch("{id}")]
@@ -115,9 +119,13 @@ namespace SmartSchool.API.Controllers
             {
                 return BadRequest("Aluno não encontrado");
             }
-            _context.Update(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+
+            _repo.Update(aluno);
+            if (_repo.SaveChanges())
+            {
+                return Ok(aluno);
+            }
+            return BadRequest("Aluno nao atualizado");
         }
     }
 }
